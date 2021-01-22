@@ -1,0 +1,56 @@
+.App {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: 510px;
+  font-size: 10px;
+  color: var(--light);
+  background-color: var(--dark);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+}
+
+.clock {
+
+}
+
+.iconsBlock {
+  background-image: url("./images/icon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 100%;
+  width: 45px;
+}
+
+.main {
+
+}
+
+.result {
+  font-size: 40px;
+  text-align: right;
+  padding: 10px;
+  margin: 25px 10px 15px;
+}
+
+.buttonsGroup {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer {
+  position: absolute;
+  bottom: 5px;
+  left: calc(50% - 40px);
+  border-bottom: 3px solid white;
+  width: 80px;
+}
