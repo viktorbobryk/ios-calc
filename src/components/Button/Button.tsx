@@ -1,18 +1,12 @@
 import React from 'react';
 import styles from './Button.module.css';
+import {IButtonProps} from '../../interfaces'
 
-type ButtonProps = {
-  type: string;
-  value: string;
-  operation: string;
-  // onToggle: (id: number) => void
-  // onRemove: (id: number) => void
-}
 
-const Button: React.FC<ButtonProps> = ({value, type}) => {
+const Button: React.FC<IButtonProps> = ({value, type, handler}) => {
   const classes = [styles.Button, styles[type]].join(" ");
   return (
-      <button className={classes}>{value}</button>
+      <button onClick={handler} className={classes}>{value}</button>
   );
 };
 
