@@ -1,4 +1,4 @@
-export const rounded = (num: number): number => {
+export const toRound = (num: number): number => {
     return Math.round(num * 100) / 100;
 };
 

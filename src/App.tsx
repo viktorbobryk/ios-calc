@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styles from './App.module.css';
 import Button from './components/Button/Button'
-import {useState} from "react";
-import {rounded, toCorrectString, toFloatNumber} from "./utility/functions";
+import {useState,} from "react";
+import {toRound, toCorrectString, toFloatNumber} from "./utility/functions";
 
 const App: React.FC = () => {
-
+    
     const [displayValue, setDisplayValue] = useState<string>("0");
     const [cachedValue, setCachedValue] = useState<[number, string]>([0, ""]);
     const [commaLimit, setCommaLimit] = useState<number>(0);
@@ -21,11 +21,10 @@ const App: React.FC = () => {
       }
       let res = displayValue !== "0" ? displayValue + event.currentTarget.innerText : event.currentTarget.innerText;
       setDisplayValue(res);
-      setCommaLimit(0);
       setLastEntered(toFloatNumber(res));
     };
 
-    const displayHandler = () => {
+    const clearDisplayHandler = () => {
       setDisplayValue("0");
       setCachedValue([0, ""]);
       setCommaLimit(0);
@@ -33,40 +32,23 @@ const App: React.FC = () => {
     };
 
     const oppositeHandler = () => {
-      setDisplayValue(toCorrectString(rounded(toFloatNumber(displayValue) * -1)));
+      setDisplayValue(toCorrectString(toRound(toFloatNumber(displayValue) * -1)));
     };
 
     const percentHandler = () => {
-        setDisplayValue(toCorrectString(rounded(toFloatNumber(displayValue) / 100)));
+        setDisplayValue(toCorrectString(toRound(toFloatNumber(displayValue) / 100)));
     };
 
     const cacheHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
         let res = toFloatNumber(displayValue);
-        // if(cachedValue[0] !== 0){
-        //     if(cachedValue[1] === "+"){
-        //         res += cachedValue[0];
-        //     }
-        //     else if(cachedValue[1] === "-"){
-        //         res -= cachedValue[0];
-        //     }
-        //     else if(cachedValue[1] === "÷"){
-        //         res /= cachedValue[0];
-        //     }
-        //     else if(cachedValue[1] === "x"){
-        //         res *= cachedValue[0];
-        //     }
-        // }
-        setCachedValue([rounded(res), event.currentTarget.innerText]);
+        setCachedValue([toRound(res) + cachedValue[0], event.currentTarget.innerText]);
         setDisplayValue("0");
     };
 
     const resultHandler = () => {
-        // if(cachedValue[0] === 0){
-        //     return displayValue
-        // }
         let res = 0;
         if(cachedValue[1] === "+"){
-            res = !lastEntered ? (cachedValue[0] + toFloatNumber(displayValue)) : (cachedValue[0] + lastEntered);
+            res = lastEntered ? (cachedValue[0] + lastEntered) : (cachedValue[0] + toFloatNumber(displayValue));
         }
         else if(cachedValue[1] === "-"){
             res = !lastEntered ? (cachedValue[0] + toFloatNumber(displayValue)) : (cachedValue[0] - lastEntered);
@@ -78,7 +60,7 @@ const App: React.FC = () => {
             res = !lastEntered ? (cachedValue[0] + toFloatNumber(displayValue)) : (cachedValue[0] * lastEntered);
         }
         console.log(res);
-        setDisplayValue(toCorrectString(rounded(res)));
+        setDisplayValue(toCorrectString(toRound(res)));
         setCachedValue([res, cachedValue[1]]);
         setCommaLimit(0);
     };
@@ -99,7 +81,7 @@ const App: React.FC = () => {
     };
 
     const buttons = [
-        {value: "AC", type: "light-grey", handler: displayHandler},
+        {value: "AC", type: "light-grey", handler: clearDisplayHandler},
         {value: "+/-", type: "light-grey", handler: oppositeHandler},
         {value: "%", type: "light-grey", handler: percentHandler},
         {value: "÷", type: "orange", handler: cacheHandler},
