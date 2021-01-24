@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ios-calc/static/css/main.c9a13b92.chunk.css",
+    "main.js": "/ios-calc/static/js/main.dc2332d5.chunk.js",
+    "main.js.map": "/ios-calc/static/js/main.dc2332d5.chunk.js.map",
+    "runtime-main.js": "/ios-calc/static/js/runtime-main.58858696.js",
+    "runtime-main.js.map": "/ios-calc/static/js/runtime-main.58858696.js.map",
+    "static/js/2.44ac009d.chunk.js": "/ios-calc/static/js/2.44ac009d.chunk.js",
+    "static/js/2.44ac009d.chunk.js.map": "/ios-calc/static/js/2.44ac009d.chunk.js.map",
+    "static/js/3.c5cfa70f.chunk.js": "/ios-calc/static/js/3.c5cfa70f.chunk.js",
+    "static/js/3.c5cfa70f.chunk.js.map": "/ios-calc/static/js/3.c5cfa70f.chunk.js.map",
+    "index.html": "/ios-calc/index.html",
+    "static/css/main.c9a13b92.chunk.css.map": "/ios-calc/static/css/main.c9a13b92.chunk.css.map",
+    "static/js/2.44ac009d.chunk.js.LICENSE.txt": "/ios-calc/static/js/2.44ac009d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.58858696.js",
+    "static/js/2.44ac009d.chunk.js",
+    "static/css/main.c9a13b92.chunk.css",
+    "static/js/main.dc2332d5.chunk.js"
+  ]
+}
