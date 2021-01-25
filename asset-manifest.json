@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ios-calc/static/css/main.c9a13b92.chunk.css",
-    "main.js": "/ios-calc/static/js/main.dc2332d5.chunk.js",
-    "main.js.map": "/ios-calc/static/js/main.dc2332d5.chunk.js.map",
+    "main.js": "/ios-calc/static/js/main.f14de8a3.chunk.js",
+    "main.js.map": "/ios-calc/static/js/main.f14de8a3.chunk.js.map",
     "runtime-main.js": "/ios-calc/static/js/runtime-main.58858696.js",
     "runtime-main.js.map": "/ios-calc/static/js/runtime-main.58858696.js.map",
     "static/js/2.44ac009d.chunk.js": "/ios-calc/static/js/2.44ac009d.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.58858696.js",
     "static/js/2.44ac009d.chunk.js",
     "static/css/main.c9a13b92.chunk.css",
-    "static/js/main.dc2332d5.chunk.js"
+    "static/js/main.f14de8a3.chunk.js"
   ]
 }
