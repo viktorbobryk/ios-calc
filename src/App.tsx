@@ -11,6 +11,7 @@ const App: React.FC = () => {
     const [commaLimit, setCommaLimit] = useState<number>(0);
     const [memoryValue, setMemoryValue] = useState<number>(0);
     const [lastEntered, setLastEntered] = useState<number>(0);
+    const [equalPressed, setEqualPressed] = useState<boolean>(false);
 
     const numbersHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
       if(event.currentTarget.innerText === ",") {
@@ -29,6 +30,7 @@ const App: React.FC = () => {
       setCachedValue([0, ""]);
       setCommaLimit(0);
       setLastEntered(0);
+      setEqualPressed(false);
     };
 
     const oppositeHandler = () => {
@@ -41,8 +43,40 @@ const App: React.FC = () => {
 
     const cacheHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
         let res = toFloatNumber(displayValue);
-        setCachedValue([toRound(res) + cachedValue[0], event.currentTarget.innerText]);
-        setDisplayValue("0");
+        let operator = event.currentTarget.innerText;
+        let num = 1;
+
+        if(event.currentTarget.innerText === "+") {
+            num = equalPressed ? cachedValue[0] : cachedValue[0] + toRound(res);
+        }
+        else if(event.currentTarget.innerText === "-") {
+            if(cachedValue[0] > 0){
+                num = equalPressed ? cachedValue[0] : cachedValue[0] - toRound(res);
+            }
+            else{
+                num = equalPressed ? cachedValue[0] : toRound(res);
+            }
+        }
+        else if(event.currentTarget.innerText === "÷") {
+            if(cachedValue[0] > 0){
+                num = equalPressed ? cachedValue[0] : cachedValue[0] / toRound(res);
+            }
+            else{
+                num = equalPressed ? cachedValue[0] : toRound(res);
+            }
+        }
+        else if(event.currentTarget.innerText === "x") {
+            if(cachedValue[0] > 0){
+                num = equalPressed ? cachedValue[0] : cachedValue[0] * toRound(res);
+            }
+            else{
+                num = equalPressed ? cachedValue[0] : toRound(res);
+            }
+        }
+            setCachedValue([num, operator]);
+            setDisplayValue("0");
+            setCommaLimit(0);
+            setEqualPressed(false);
     };
 
     const resultHandler = () => {
@@ -51,18 +85,23 @@ const App: React.FC = () => {
             res = lastEntered ? (cachedValue[0] + lastEntered) : (cachedValue[0] + toFloatNumber(displayValue));
         }
         else if(cachedValue[1] === "-"){
-            res = !lastEntered ? (cachedValue[0] + toFloatNumber(displayValue)) : (cachedValue[0] - lastEntered);
+            res = !lastEntered ? (cachedValue[0] - toFloatNumber(displayValue)) : (cachedValue[0] - lastEntered);
         }
         else if(cachedValue[1] === "÷"){
-            res = !lastEntered ? (cachedValue[0] + toFloatNumber(displayValue)) : (cachedValue[0] / lastEntered);
+            res = !lastEntered ? (cachedValue[0] / toFloatNumber(displayValue)) : (cachedValue[0] / lastEntered);
         }
         else if(cachedValue[1] === "x"){
-            res = !lastEntered ? (cachedValue[0] + toFloatNumber(displayValue)) : (cachedValue[0] * lastEntered);
+            res = !lastEntered ? (cachedValue[0] * toFloatNumber(displayValue)) : (cachedValue[0] * lastEntered);
         }
-        console.log(res);
+
         setDisplayValue(toCorrectString(toRound(res)));
         setCachedValue([res, cachedValue[1]]);
         setCommaLimit(0);
+        setEqualPressed(true);
+        if(displayValue === "0") {
+            setEqualPressed(false);
+        }
+
     };
 
     const memoryHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -76,7 +115,8 @@ const App: React.FC = () => {
             setMemoryValue(toFloatNumber(displayValue ) * -1)
         }
         else if(event.currentTarget.innerText === "mr"){
-            setDisplayValue(toCorrectString(memoryValue))
+            setDisplayValue(toCorrectString(memoryValue));
+            setLastEntered(0);
         }
     };
 
